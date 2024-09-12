@@ -1,0 +1,22 @@
+.formulario {
+    max-width: 400px; /* Define a largura máxima */
+    margin: 0 auto;   /* Centraliza horizontalmente */
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Adiciona um leve sombreamento */
+    background-color: #fff; /* Cor de fundo (opcional) */
+    border-radius: 8px; /* Bordas arredondadas */
+  }
+
+  ion-button {
+    max-width: 400px; /* Limita a largura dos botões */
+    margin: 0 auto;   /* Centraliza os botões */
+    display: block;   /* Garante que o botão ocupe toda a linha */
+  }
+  
+  @media (min-width: 768px) {
+    .formulario {
+      padding: 40px; /* Aumenta o padding em telas maiores */
+    }
+
+  }
+  
