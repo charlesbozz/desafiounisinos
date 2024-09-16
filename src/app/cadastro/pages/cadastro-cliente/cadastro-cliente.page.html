@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nome Completo *</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="hasError('nome', 'required')">
+      Nome é obrigatório.
+    </ion-text>
+    <ion-text color="danger" *ngIf="hasError('nome', 'minlength')">
+      Nome deve ter pelo menos 3 caracteres.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Data de Nascimento *</ion-label>
+      <ion-datetime formControlName="dataNascimento" displayFormat="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-text color="danger" *ngIf="hasError('dataNascimento', 'required')">
+      Data de nascimento é obrigatória.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">CPF *</ion-label>
+      <ion-input formControlName="cpf" type="text" maxlength="11"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="hasError('cpf', 'required')">
+      CPF é obrigatório.
+    </ion-text>
+    <ion-text color="danger" *ngIf="hasError('cpf', 'cpfInvalido')">
+      CPF inválido.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Telefone *</ion-label>
+      <ion-input formControlName="telefone" type="tel"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="hasError('telefone', 'required')">
+      Telefone é obrigatório.
+    </ion-text>
+    <ion-text color="danger" *ngIf="hasError('telefone', 'pattern')">
+      Formato de telefone inválido.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">E-mail *</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="hasError('email', 'required')">
+      E-mail é obrigatório.
+    </ion-text>
+    <ion-text color="danger" *ngIf="hasError('email', 'email')">
+      E-mail inválido.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Endereço</ion-label>
+      <ion-input formControlName="endereco" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Observações Adicionais</ion-label>
+      <ion-textarea formControlName="observacoes"></ion-textarea>
+    </ion-item>
+    
+    <ion-button expand="block" type="submit" [disabled]="!clienteForm.valid">
+      Cadastrar
+    </ion-button>
+  </form>
+</ion-content>

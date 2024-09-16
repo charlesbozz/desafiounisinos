@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { OverlayService } from 'src/app/core/services/overlay.service';
@@ -22,7 +24,12 @@ export class LoginPage implements OnInit {
 
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private overlayService: OverlayService) { }
+  constructor(
+    private authService: AuthService, 
+    private fb: FormBuilder,
+    private navCtrl: NavController, 
+    private route: ActivatedRoute,
+    private overlayService: OverlayService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -63,8 +70,7 @@ export class LoginPage implements OnInit {
         user: this.authForm.value,
         provider
       });
-      console.log('Autenticado: ', credentials)
-      console.log('Redirecting...');
+     this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') ||'/cadastro-cliente');
     } catch (error) {
       const errMessage = (error as Error).message;
       console.log('Auth error: ', errMessage)   

@@ -5,10 +5,6 @@ import { Observable, take, tap } from "rxjs";
 
 
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,13 +25,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanMatch {
     return this.checkAuthState(url).pipe(take(1));
   }
 
-  // /tasks/create
+  
   private checkAuthState(redirect: string): Observable<boolean> {
     return this.authService.isAuthenticated.pipe(
       tap(is => {
         if (!is) {
           this.router.navigate(['/login'], {
-            queryParams: {redirect} // /login?redirect=/tasks/create
+            queryParams: {redirect} // /login?redirect=
           });
         }
       })
